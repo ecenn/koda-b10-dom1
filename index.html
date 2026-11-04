@@ -4,18 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Konversi Suhu</title>
-    <style></style>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Pixelify+Sans:wght@400..700&family=Public+Sans:wght@100..900&display=swap');
+        
+        body, button {
+            background-color: rgba(0, 0, 0, 0.50);
+            font-family: "Pixelify Sans", sans-serif;
+            font-optical-sizing: auto;
+        }
+
+        .container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 16px;
+            background-color: whitesmoke;
+            border: 1px solid darkslategray;
+            border-radius: 16px;
+
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, p {
+            margin: 0;
+        }
+        
+        input, span {
+            font-family: "IBX Plex Mono", monospace;
+            font-weight: 500;
+            color: gray;
+        }
+    </style>
 </head>
 <body>
-    <h1>Program Konversi Suhu</h1>
-    <label for="celc">Masukan suhu (&deg;C): </label>
-    <input type="number" name="celcius" id="celc">
-    <button type="button" id="calculate">hitung</button>
-
-    <h2>Hasil</h2>    
-    <p>Fahrenheit: <span id="f"></span> &deg;F</p>
-    <p>Reamur: <span id="r"></span> &deg;R</p>
-    <p>Kelvin: <span id="k"></span> &deg;K</p>
+    <div class="container">
+        <h1>Program Konversi Suhu</h1>
+        <div class="inpu">
+            <label for="celc">Masukan suhu (&deg;C): </label>
+            <input type="number" name="celcius" id="celc">
+            <button type="button" id="calculate">hitung</button>
+        </div>
+        <h2>Hasil</h2>
+        <div>
+            <p>Fahrenheit: <span id="f"></span> &deg;F</p>
+            <p>Reamur: <span id="r"></span> &deg;R</p>
+            <p>Kelvin: <span id="k"></span> &deg;K</p>
+        </div>
+    </div>
     
     <script>
         const fahr = document.querySelector("#f")
