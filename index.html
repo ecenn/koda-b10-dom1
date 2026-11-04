@@ -8,49 +8,104 @@
         @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Pixelify+Sans:wght@400..700&family=Public+Sans:wght@100..900&display=swap');
         
         body, button {
-            background-color: rgba(0, 0, 0, 0.50);
+            background-color: rgba(0, 0, 0, 0.40);
             font-family: "Pixelify Sans", sans-serif;
             font-optical-sizing: auto;
         }
 
         .container {
             position: fixed;
+            width: 25%;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            padding: 16px;
+            padding: 32px;
             background-color: whitesmoke;
             border: 1px solid darkslategray;
             border-radius: 16px;
+            box-shadow: 0 0 3px 0 darkslategrey;
 
             display: flex;
             flex-direction: column;
+            gap: 40px;
         }
 
         h1, h2, p {
             margin: 0;
         }
+
+        h1, h2 {
+            margin-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 68, 0, 0.5);
+        }
         
-        input, span {
-            font-family: "IBX Plex Mono", monospace;
-            font-weight: 500;
-            color: gray;
+        input, #f, #r, #k {
+            font-family: "IBM Plex Mono", monospace;
+            font-weight: 600;
+            font-size: smaller;
+            color: orangered;
+        }
+
+        input {
+            padding: 4px 12px;
+            border-radius: 12px;
+            border: 1px solid red;
+        }
+
+        .container > div:first-of-type > div {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        button {
+            border-radius: 4px;
+        }
+
+        .res {
+            width: 100%;
+            display: grid;
+            grid-template-columns: auto 100px 10px;
+            gap: 8px;
+        }
+
+        .container > div:last-of-type > h2 {
+            text-align: right;
+        }
+
+        .res > p:first-of-type {
+            text-align: right;
+        }
+
+        .res > span {
+            border-bottom: 1px solid orange;
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Program Konversi Suhu</h1>
-        <div class="inpu">
-            <label for="celc">Masukan suhu (&deg;C): </label>
-            <input type="number" name="celcius" id="celc">
-            <button type="button" id="calculate">hitung</button>
-        </div>
-        <h2>Hasil</h2>
         <div>
-            <p>Fahrenheit: <span id="f"></span> &deg;F</p>
-            <p>Reamur: <span id="r"></span> &deg;R</p>
-            <p>Kelvin: <span id="k"></span> &deg;K</p>
+            <h1>Konversi Suhu</h1>
+            <div>
+                <label for="celc">Masukan suhu (&deg;C): </label>
+                <input type="number" name="celcius" id="celc">
+                <button type="button" id="calculate">gas!</button>
+            </div>
+        </div>
+        <div>
+            <h2>Hasil</h2>
+            <div>
+                <span class="res">
+                    <p>Fahrenheit: </p><span id="f"></span><p> &deg;F</p>
+                </span>
+                <span class="res">
+                    <p>Reamur: </p><span id="r"></span><p> &deg;R</p>
+                </span>
+                <span class="res">
+                    <p>Kelvin: </p><span id="k"></span><p> &deg;K</p>
+                </span>
+            </div>
         </div>
     </div>
     
