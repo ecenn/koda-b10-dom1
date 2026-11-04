@@ -3,9 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Konversi Suhu</title>
+    <style></style>
 </head>
 <body>
+    <h1>Program Konversi Suhu</h1>
+    <label for="celc">Masukan suhu (&deg;C): </label>
+    <input type="number" name="celcius" id="celc">
+    <button type="button" id="calculate">hitung</button>
+
+    <h2>Hasil</h2>    
+    <p>Fahrenheit: <span id="f"></span> &deg;F</p>
+    <p>Reamur: <span id="r"></span> &deg;R</p>
+    <p>Kelvin: <span id="k"></span> &deg;K</p>
     
+    <script>
+        const fahr = document.querySelector("#f")
+        const ream = document.querySelector("#r")
+        const kelv = document.querySelector("#k")
+        
+        function convert(c) {
+            c = parseInt(c)
+            const f = (c*9/5)+32
+            const r = c*4/5
+            const k = c+273
+            return [f,r,k]
+        }
+        
+        document.querySelector("#calculate").addEventListener("click", () => {
+            const {value: celc} = document.getElementById("celc")
+            const [f,r,k] = convert(celc)
+            fahr.textContent = `${f}`;
+            ream.textContent = `${r}`;
+            kelv.textContent = `${k}`;
+        })
+    </script>
 </body>
 </html>
