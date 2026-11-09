@@ -11,14 +11,15 @@
             background-color: rgba(0, 0, 0, 0.40);
             font-family: "Pixelify Sans", sans-serif;
             font-optical-sizing: auto;
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
-        .container {
-            position: fixed;
-            width: 25%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+
+        .container, body > div:last-of-type {
+            width: 28%;
             padding: 32px;
             background-color: whitesmoke;
             border: 1px solid darkslategray;
@@ -28,6 +29,10 @@
             display: flex;
             flex-direction: column;
             gap: 40px;
+        }
+        
+        body > div:last-of-type {
+            gap: 12px;
         }
 
         h1, h2, p {
@@ -39,11 +44,17 @@
             border-bottom: 1px solid rgba(255, 68, 0, 0.5);
         }
         
-        input, #f, #r, #k {
+        input, #f, #r, #k,
+        table > tr > td {
             font-family: "IBM Plex Mono", monospace;
             font-weight: 600;
             font-size: smaller;
             color: orangered;
+        }
+
+        table > tr > th,
+        table > tr > td {
+            text-align: center;
         }
 
         input {
@@ -52,7 +63,7 @@
             border: 1px solid red;
         }
 
-        .container > div:first-of-type > div {
+        .container > div:first-of-type > #suhu {
             display: flex;
             gap: 8px;
             align-items: center;
@@ -87,11 +98,11 @@
     <div class="container">
         <div>
             <h1>Konversi Suhu</h1>
-            <div>
+            <form action="" id="suhu">
                 <label for="celc">Masukan suhu (&deg;C): </label>
                 <input type="number" name="celcius" id="celc">
-                <button type="button" id="calculate">gas!</button>
-            </div>
+                <button type="submit" id="calculate">gas!</button>
+            </form>
         </div>
         <div>
             <h2>Hasil</h2>
@@ -108,11 +119,25 @@
             </div>
         </div>
     </div>
+
+    <div>
+        <h2>History</h2>
+        <table id="history">
+            <tr>
+                <th>&deg;C</th>
+                <th>&deg;F</th>
+                <th>&deg;R</th>
+                <th>&deg;K</th>
+            </tr>
+        </table>
+    </div>
     
     <script>
         const fahr = document.querySelector("#f")
         const ream = document.querySelector("#r")
         const kelv = document.querySelector("#k")
+        const form = document.getElementById("suhu")
+        const hist = document.getElementById("history")
         
         function convert(c) {
             c = parseInt(c)
@@ -122,12 +147,29 @@
             return [f,r,k]
         }
         
-        document.querySelector("#calculate").addEventListener("click", () => {
-            const {value: celc} = document.getElementById("celc")
-            const [f,r,k] = convert(celc)
+        function history(data) {
+            const row = document.createElement("tr")
+
+            data.forEach(element => {
+                const res = document.createElement("td")
+                res.append(element)
+                row.append(res)
+            });
+
+            hist.append(row)
+        }
+
+        form.addEventListener("submit", (event) => {
+            event.preventDefault()
+
+            const {value: c} = document.getElementById("celc")
+            const [f,r,k] = convert(c)
             fahr.textContent = `${f}`;
             ream.textContent = `${r}`;
             kelv.textContent = `${k}`;
+
+            const data = [c, f, r, k]
+            history(data)
         })
     </script>
 </body>
